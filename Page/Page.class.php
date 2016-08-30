@@ -3,7 +3,7 @@
 error_reporting(E_ALL & ~E_NOTICE); //错误抑制
 /**
  * 分页类，以组件形式存在
- * 13-5-15 下午8:26 
+ * 13-5-15 下午8:26
  */
 class Page {
 		private $total; //数据表中总记录数
@@ -12,12 +12,12 @@ class Page {
 		private $uri;
 		private $style;
 		private $nowstyle;
-		private $miao;	
+		private $miao;
 		private $pageNum; //页数
 		private $config=array('header'=>"个记录", "prev"=>"上一页", "next"=>"下一页", "first"=>"首 页", "last"=>"尾 页");
 		private $listNum=8;
 		/*
-		 * $total 
+		 * $total
 		 * $listRows
 		 */
 		public function __construct($total, $listRows=10, $pa="",$style=array(),$miao=''){
@@ -40,13 +40,13 @@ class Page {
 			$url=$_SERVER["REQUEST_URI"].(strpos($_SERVER["REQUEST_URI"], '?')?'':"?").$pa;
 			$parse=parse_url($url);
 
-		
+
 
 			if(isset($parse["query"])){
 				parse_str($parse['query'],$params);
 				unset($params["page"]);
 				$url=$parse['path'].'?'.http_build_query($params);
-				
+
 			}
 
 			return $url;
@@ -91,9 +91,9 @@ class Page {
 
 		private function pageList(){
 			$linkPage="";
-			
+
 			$inum=floor($this->listNum/2);
-		
+
 			for($i=$inum; $i>=1; $i--){
 				$page=$this->page-$i;
 
@@ -103,9 +103,9 @@ class Page {
 				$linkPage.="<a href='{$this->uri}&page={$page}{$this->miao}' class='{$this->style}'>{$page}</a>";
 
 			}
-		
+
 			$linkPage.="<a href='' class='{$this->nowstyle}'>{$this->page}</a>";
-			
+
 
 			for($i=1; $i<=$inum; $i++){
 				$page=$this->page+$i;
@@ -143,7 +143,7 @@ class Page {
 			$html[0]="共有<b>{$this->total}</b>{$this->config["header"]}&nbsp;";
 			$html[1]="每页显示<b>".($this->end()-$this->start()+1)."</b>条，本页<b>{$this->start()}-{$this->end()}</b>条&nbsp;";
 			$html[2]="<b>{$this->page}/{$this->pageNum}</b>页&nbsp;";
-			
+
 			$html[3]=$this->first();
 			$html[4]=$this->prev();
 			$html[5]=$this->pageList();
@@ -158,9 +158,6 @@ class Page {
 			return $fpage;
 
 		}
-
-	
-
 	}
 	$page = new Page(100,20);
 	echo $page->fpage();
