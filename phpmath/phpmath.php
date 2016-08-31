@@ -106,7 +106,7 @@ function quickSort($arr)
 
     for ($i=0; $i <$length ; $i++) {
         if($base_num > $arr[$i])
-            $left_arry[] = $arr[$i];
+            $left_arry[]   = $arr[$i];
         else
             $right_array[] = $arr[$i];
     }
