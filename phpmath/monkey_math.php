@@ -81,5 +81,4 @@ function king($m ,$n)
     }
     return $arr ;
 }
-
 //var_dump(king(5,2)); // [3];
