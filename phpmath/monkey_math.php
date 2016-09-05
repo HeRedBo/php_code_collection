@@ -17,6 +17,7 @@ function getLeader($n, $m)
     for($i=2; $i<=$n; $i++)
     {
         $res = ($res + $m) % $i;
+        echo $res,'<br/>';
     }
     return $res+1;
 }
@@ -46,12 +47,12 @@ function getKing($monkeys , $m , $current = 0)
 }
 
 
-$n=5;      //总共猴子数目
-$m = 2;    //数到第几只的那只猴子被踢出去
-$monkeys = range(1,$n); //将猴子编号放入数组中
-getKing($monkeys , $m);     //调用函数
+// $n=5;      //总共猴子数目
+// $m = 2;    //数到第几只的那只猴子被踢出去
+// $monkeys = range(1,$n); //将猴子编号放入数组中
+// getKing($monkeys , $m);     //调用函数
 
-//echo getLeader(5,2);
+//echo getLeader(5,2);exit;
 
 
 /**
@@ -71,7 +72,7 @@ function king($m ,$n)
     while(count($arr)>1)
     {
         //遍历数组，判断当前猴子是否为出局序号，如果是则出局，否则放到数组最后
-        if(($i+1)%$n ==0) {
+        if(($i+1) % $n ==0) {
             unset($arr[$i]) ;
         } else {
             array_push($arr ,$arr[$i]) ; //本轮非出局猴子放数组尾部
@@ -81,4 +82,5 @@ function king($m ,$n)
     }
     return $arr ;
 }
-//var_dump(king(5,2)); // [3];
+
+king2(5,2);

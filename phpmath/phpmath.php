@@ -8,7 +8,7 @@ function bubble_sort($arr)
     if(is_array($arr)) {
         $len = count($arr);
         for ($i=0; $i < $len; $i++) {
-            for ($j=1; $i < $len= $i; $i++) {
+            for ($j=1; $i < $len - $i; $i++) {
                 if($arr[$j-1] > $arr[$j]) {
                     $temp       = $arr[$j-1];
                     $arr[$j-1]  = $arr[$j];
@@ -43,15 +43,14 @@ function selectSort($arr)
 
             if($p != $i)
             {
-                $tmp = $arr[$i];
-                $arr[$i] = $arr[$p];
-                $arr[$p] = $tmp;
+                $tmp = $arr[$p];
+                $arr[$p] = $arr[$i];
+                $arr[$i] = $tmp;
             }
         }
     }
     return $arr;
 }
-
 
 /**
  * 2、插入排序
@@ -68,7 +67,6 @@ function insertSort($arr)
         $tmp = $arr[$i];
         //内层循环控制 比较 并 插入
         for($j=$i-1;$j>=0;$j--) {
-            //$arr[$i];//需要插入的元素; $arr[$j];//需要比较的元素
             if($tmp < $arr[$j]) {
                 //发现插入的元素要小，交换位置
                 //将后边的元素与前面的元素互换
@@ -137,9 +135,9 @@ function getKeyInArray($arr, $find)
         return $middleKey;
 
     if($middleValue < $find)
-        return $middleKey + 1 + getKeyInArrayTest(array_splice($arr,$middleKey + 1,$find));
+        return $middleKey + 1 + getKeyInArray(array_slice($arr,$middleKey + 1),$find);
     else
-        return getKeyInArrayTest(array_slice($arr,0,$middleKey),$find);
+        return getKeyInArray(array_slice($arr,0,$middleKey),$find);
 
     return false;
 }
@@ -167,3 +165,19 @@ function binSearch($array, $low, $hight, $find)
         return -1;
     }
 }
+
+
+//效率比较
+for($i = 0;$i < 1000;$i++){
+    $arr[] = mt_rand(0,100);
+}
+
+//比较时间
+// var_dump($arr);
+$before = microtime(true);
+$arr2  = selectSort($arr);
+//quick_sort($arr);
+$after = microtime(true);
+echo '程序执行时间', $after - $before ,'秒';
+echo "<pre/>";
+var_dump($arr2);

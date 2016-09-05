@@ -41,11 +41,11 @@
 	}
 
 	//调用二分法函数进行处理
-	$arr = array(1,2,3,4,5,6,7,8,9,10);
+	$arr = array(1,2,3,4,5,6,7,8);
 
-	$res = getKeyInArray($arr,1);
+	$res = getKeyInArray($arr,7);
 	var_dump($res);
-
+	var_dump($arr[$res]);
 	/**
 	 * 二分法测试函数
 	 * @author Red-Bo
@@ -65,7 +65,7 @@
 		if($find == $middleValue) return $middleKey;
 
 		if($middleValue < $find)
-			return $middleKey + 1 + getKeyInArrayTest(array_splice($arr,$middleKey + 1,$find));
+			return $middleKey + 1 + getKeyInArrayTest(array_splice($arr,$middleKey + 1),$find);
 		else
 			return getKeyInArrayTest(array_slice($arr,0,$middleKey),$find);
 
