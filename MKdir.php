@@ -5,13 +5,17 @@
 	 *@param $path string 要创建的目录
 	 *@param $mode int 要创建的目录模式 ，在window下忽略
 	 */
-	function create_dir($path,$mode = 0777){
-		if(!is_dir($path)){
+	function create_dir($path,$mode = 0777)
+	{
+		if(!is_dir($path))
+		{
 			#如果不存在目录，则不创建
-
-			if(mkdir($path,$mode,true)){
+			if(mkdir($path,$mode,true))
+			{
 				echo "目录创建成功！";
-			}else{
+			}
+			else
+			{
 				echo "目录创建失败！";
 			}
 		} else{
@@ -26,9 +30,25 @@ create_dir("D:/www.php.com/Thinkphp/Uploads/Images/2015-05-11/thumb_image");
 	 *@param $path string 要创建的目录
 	 *@param $mode int 要创建的目录模式 ，在window下忽略
 	 */
-	function create_dir2($path,$mode = 0777){
-		if(!is_dir($path)){
+	function create_dir2($path,$mode = 0777)
+	{
+		if(!is_dir($path))
+		{
 			#如果不存在目录，则不创建
 			mkdir($path,$mode,true);
 		}
+	}
+
+	/**
+	 *php创建多级目录函数
+	 *@param $path string 要创建的目录
+	 *@param $mode int 要创建的目录模式 ，在window下忽略
+	 */
+	function create_mkdir3($dir, $mode = 0777)
+	{
+		if (is_dir($dir) || @mkdir($dir, $mode))
+			return true;
+		if (!mk_dir(dirname($dir), $mode))
+			return false;
+		return @mkdir($dir, $mode);
 	}
