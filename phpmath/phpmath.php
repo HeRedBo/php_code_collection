@@ -56,7 +56,6 @@ function selectSort($arr)
  * 2、插入排序
  *
  * 将要排序的元素插入到已经 假定排序号的数组的指定位置。
- *
  * @param array $arr
  */
 function insertSort($arr)
@@ -68,8 +67,7 @@ function insertSort($arr)
         //内层循环控制 比较 并 插入
         for($j=$i-1;$j>=0;$j--) {
             if($tmp < $arr[$j]) {
-                //发现插入的元素要小，交换位置
-                //将后边的元素与前面的元素互换
+                //发现插入的元素要小，交换位置 将后边的元素与前面的元素互换
                 $arr[$j+1] = $arr[$j];
                 //将前面的数设置为 当前需要交换的数
                 $arr[$j] = $tmp;
