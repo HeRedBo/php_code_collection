@@ -8,7 +8,7 @@ function bubble_sort($arr)
     if(is_array($arr)) {
         $len = count($arr);
         for ($i=0; $i < $len; $i++) {
-            for ($j=1; $i < $len - $i; $i++) {
+            for ($j=1; $i < $len - $i; $j++) {
                 if($arr[$j-1] > $arr[$j]) {
                     $temp       = $arr[$j-1];
                     $arr[$j-1]  = $arr[$j];
