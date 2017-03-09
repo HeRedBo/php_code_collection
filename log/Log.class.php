@@ -14,7 +14,7 @@
  *  如果>1M,备份
  *  否则,写入
 */
-class Log
+class ApiLog
 {
     private static $handler = null;
     private static $level   = 15;
@@ -23,6 +23,7 @@ class Log
     private static $fileMaxSize;//日志文件最大为5M
     private static $initOk;
     private static  $instance = null;
+
     private function __construct(){}
     private function __clone(){}
 
@@ -32,7 +33,7 @@ class Log
      * @param string  $dir      日志文件目录
      * @param integer $level     
      */
-    public static function Init($filename,$dir = '/home/logs/redbo/webapi', $maxSize =1, $level = 15)
+    public static function getInstance($filename,$dir = '/home/logs/webapi', $maxSize =1, $level = 15)
     {
         $dot_offset = strrpos($filename,'.');
         if($dot_offset !== false)
@@ -59,13 +60,14 @@ class Log
                 #echo("创建文件失败!");  
             }  
         }
-        
-        if(!self::$instance instanceof self)
+        // 文件备份
+        self::_isBack($path);
+        if(!isset(self::$instance[$filename]))
         {
-            self::$instance = new self();
-            self::$instance->_initHandler($path);
+            self::$instance[self::$filename] = new self();
+            self::$instance[self::$filename]->_initHandler($path);; 
         }
-        return self::$instance;
+        return self::$instance[$filename];
     }
 
     private function _initHandler($path)
@@ -75,18 +77,17 @@ class Log
 
     private static function _isExist($path)
     {
-        self::_isBack($path);
         return file_exists($path);
     }
 
     public static function DEBUG($msg)
     {
-        self::$instance->write(1,$msg);
+        self::$instance[self::$filename]->write(1,$msg);
     }
 
     public static function WARN($msg)
     {
-        self::$instance->write(4,$msg);
+        self::$instance[self::$filename]->write(4,$msg);
     }
 
     public static function ERROR($msg)
@@ -111,12 +112,12 @@ class Log
             }
         }
         $stack .= ']';
-        self::$instance->write(8,$stack . $msg);
+        self::$instance[self::$filename]->write(8,$stack . $msg);
     }
 
     public static function INFO($msg)
     {
-        self::$instance->write(2,$msg);
+        self::$instance[self::$filename]->write(2,$msg);
     }
 
     /**
@@ -223,4 +224,3 @@ class Log
         return is_dir($dir) or (self::_createDir(dirname($dir)) and @mkdir($dir, 0777));  
     }
 }
-
