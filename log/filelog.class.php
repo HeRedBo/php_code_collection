@@ -234,8 +234,8 @@ class FileLog
         return false;
     }
 
-    // public function __destruct()
-    // {
-    //     @fclose($this->$handler);
-    // }
+    public function __destruct()
+    {
+        @fclose($this->$handler);
+    }
 }
