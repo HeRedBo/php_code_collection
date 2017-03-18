@@ -1,5 +1,8 @@
 <?php 
-require_once('Log.class.php');
+require_once('filelog.class.php');
 $msg = "hello world";
-$instance = Log::Init('api')->DEBUG($msg);
-var_dump($instance);
+$instance = FileLog::getInstance('api')->info($msg);
+$instance = FileLog::getInstance('api')->debug($msg);
+$instance = FileLog::getInstance('api')->WARN($msg);
+$instance = FileLog::getInstance('api')->error($msg);
+

@@ -4,7 +4,6 @@
 class factory
 {
     public static $_services = [];
-
     /**
      * 生产对象
      * @param  string $class 类名
