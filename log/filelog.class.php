@@ -4,7 +4,7 @@
  * 1. 日志目录统一放到/data/logs/
  * 2. 日志按日期分目录,便于归档
  * 3. 当天日志按controller id 分不同文件,
- * 例如： /data/logs/redbo/webapi/2016-04-08/site.log
+ * 例如： /data/logs/redbo/webapi/2017-03-18/site.log
  * 4. 文件大小要自动备份 文件默认最大值5M
  * 
  * 思路:
@@ -14,6 +14,7 @@
  * 判断当前日志的大小
  *  如果>1M,备份
  *  否则,写入
+ *  @example FileLog::getInstance('api')->info($msg);
 */
 class FileLog
 {
