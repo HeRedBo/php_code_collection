@@ -20,7 +20,7 @@ class FileLog
 {
 
     private static  $_instance = [];
-     private static $filePath;
+    private static $filePath;
     private $handler = null;
     private $level   = 15;
     private $fileDir;
@@ -116,7 +116,6 @@ class FileLog
                 $stack .= ',function:' .$val['function'];
             }
         }
-        $stack = ltrim($stack,',');
         $stack .= ']';
         self::$_instance[$this->filename]->write(8,$stack . $msg);
     }
@@ -204,7 +203,7 @@ class FileLog
     }
 
      /**
-     * 创建日志文件 | 需要做备份处理
+     * 创建日志文件
      * @param  string $path 文件处理
      * @return [type]       [description]
      */
