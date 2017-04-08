@@ -4,7 +4,6 @@ interface ILoghandler
 {
     public function write($msg);
 }
-
 class CLogFileHandler implements ILoghandler
 {
     private $handle = null;

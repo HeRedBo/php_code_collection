@@ -202,7 +202,7 @@ class FileLog
         return file_exists($path);
     }
 
-     /**
+    /**
      * 创建日志文件
      * @param  string $path 文件处理
      * @return [type]       [description]
