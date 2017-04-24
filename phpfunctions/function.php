@@ -225,4 +225,17 @@ function highlighter($text, $words)
 	return $text;
 }
 
-?>
+function generateRandomStr($length = 8)
+{
+    $str = '1234567890qwertyuiopasdfghjklzxcvbnm';
+    $strlen = strlen($str);
+    while($length > $strlen)
+    {
+        $str .= $str;
+        $strlen += strlen($str);
+    }
+    $str = str_shuffle($str);
+    return  substr($str, 0, $length);
+}
+
+

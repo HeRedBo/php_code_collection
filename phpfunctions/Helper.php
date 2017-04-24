@@ -531,7 +531,7 @@ html,body,div,p,a,h3{margin:0;padding:0;}
 	/**
 	 * 检测是否为英文或英文数字的组合
 	 *
-	 * @return unknown
+	 * @return bool
 	 */
 	public static function isEnglist($param)
     {
