@@ -19,5 +19,4 @@ class ServiceFactory
             return $_services[$className];
         }
     }
-
 }
